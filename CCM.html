@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culture Corner Mibrary</title>
+        <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family:'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #647e5e;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .library-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            flex-grow: 1;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        nav ul li {
+            padding: 14px 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        section {
+            padding: 100px 20px;
+            height:fit-content;
+            text-align:left;
+        }
+
+        .operation-hours {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #clock {
+            font-size: 1.2em;
+        }
+        #calendar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #858585;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        .day, .date {
+            padding: 10px;
+            background-color: #c7c7c7;
+            border: 1px solid #8f8b8b;
+            text-align: center;
+        }
+        .day {
+            font-weight: bold;
+        }
+        .date.current {
+            background-color: #ffcccb;
+        }
+        #navigation {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #navigation button {
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            object-fit: cover; /* Ensure the image covers the entire card */
+            z-index: -1; /* Place the image behind the text */
+        }
+
+        main {
+                padding: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            body {
+                font-family:'Times New Roman', Times, serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff00;
+                color: #c2bbbb;
+            }
+
+        .card {
+        	height: 280px;
+            width: 300px;
+            background-color: #ddddddc4;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            position: relative; /* Ensure the card is positioned relative to contain absolute children */
+            overflow: hidden; /* Ensure the image does not overflow the card */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            
+        }
+
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: -1;
+        }
+        
+        .card-content {
+                position: relative;
+                z-index: 1; 
+                padding: 20px; 
+                background: rgba(219, 219, 219, 0.568); /* Slightly transparent background for readability */
+                border-radius: 8px; 
+                display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            box-sizing: border-box; /* Ensure padding is included in height */
+            }
+
+        .card h3 {
+            color: #171718;
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+
+        .card p {
+            font-size: 1rem;
+                margin-top: 10px;
+                text-align: center;
+        }
+
+        #home {
+            background-image: url(IMAGES/backgroundhome2.jpg);
+            background-size: cover;
+            color: #000000;
+        }
+
+        #about {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        #services {
+            background-image: url(IMAGES/backlib.jpg);
+            background-size:cover;
+        }
+
+        #programs {
+            background-image: url(IMAGES/backprogram.jpg);
+            background-size: cover;
+            color: rgb(0, 0, 0);
+        }
+
+        #research {
+            background-image: url(IMAGES/backresearch.jpg);
+            background-size: cover;
+            color: rgb(0, 0, 0);
+        }
+
+        #community {
+            background-image: url(IMAGES/backcommunity.jpg);
+            background-size: cover;
+            color: rgb(19, 18, 18);
+        }
+
+        #contact {
+            background-color: #504f4f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="IMAGES/LOGO.jpg" alt="Library Logo">
+            <div class="library-name">Culture Corner Mibrary</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="#services"><i class="fas fa-concierge-bell"></i> Services</a></li>
+                <li><a href="#programs"><i class="fas fa-calendar-alt"></i> Programs & Events</a></li>
+                <li><a href="#research"><i class="fas fa-book"></i> Research & Learning</a></li>
+                <li><a href="#community"><i class="fas fa-users"></i> Community Engagement</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <p></p>
+        <h1> Hello and welcome to our library!</h1>
+        <b><p>Explore our vast collection of books, e-books and digital resources tailored to meet the needs of all ages and interests.</p>
+        <p>Join us in our mission to inspire, educate, and connect our community through the power of information.</p>
+        <p>Whether you're here to research, relax with a good book, or participate in our enhancing programs, we have something for everyone.</p>
+        <p>Discover new worlds and expand your horizons with our extensive resources and services.</p>
+        <p>Thank you for visiting our library, where every visit is an adventure in learning. Happy exploring!</p></b>
+
+        <body>
+            <div id="header">
+                <div id="navigation">
+                    <button id="prevMonth">&laquo; Previous</button>
+                   <h2> <div id="clock"></div></h2>
+                    <button id="nextMonth">Next &raquo;</button>
+                </div>
+            </div>
+            <div id="calendar-container">
+                <div id="calendar"></div>
+            </div>
+        
+            <script>
+                // Function to update the clock
+                function updateClock() {
+                    const now = new Date();
+                    const options = { 
+                        weekday: 'long', year: 'numeric', month: 'long', 
+                        day: 'numeric', hour: '2-digit', minute: '2-digit', 
+                        second: '2-digit', hour12: true 
+                    };
+                    const formattedTime = now.toLocaleTimeString('en-US', options);
+                    document.getElementById('clock').textContent = formattedTime;
+                }
+        
+                // Function to generate the calendar
+                function generateCalendar(month, year) {
+                    const now = new Date();
+                    const today = now.getDate();
+                    const currentMonth = now.getMonth();
+                    const currentYear = now.getFullYear();
+        
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const lastDate = new Date(year, month + 1, 0).getDate();
+        
+                    const calendar = document.getElementById('calendar');
+                    calendar.innerHTML = '';
+        
+                    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    for (const day of daysOfWeek) {
+                        const dayElement = document.createElement('div');
+                        dayElement.className = 'day';
+                        dayElement.textContent = day;
+                        calendar.appendChild(dayElement);
+                    }
+        
+                    for (let i = 0; i < firstDay; i++) {
+                        const emptyElement = document.createElement('div');
+                        emptyElement.className = 'date';
+                        calendar.appendChild(emptyElement);
+                    }
+        
+                    for (let date = 1; date <= lastDate; date++) {
+                        const dateElement = document.createElement('div');
+                        dateElement.className = 'date';
+                        if (date === today && month === currentMonth && year === currentYear) {
+                            dateElement.classList.add('current');
+                        }
+                        dateElement.textContent = date;
+                        calendar.appendChild(dateElement);
+                    }
+                }
+        
+                // Function to handle month navigation
+                function navigateMonth(direction) {
+                    currentMonth += direction;
+                    if (currentMonth < 0) {
+                        currentMonth = 11;
+                        currentYear--;
+                    } else if (currentMonth > 11) {
+                        currentMonth = 0;
+                        currentYear++;
+                    }
+                    generateCalendar(currentMonth, currentYear);
+                    updateHeader(currentMonth, currentYear);
+                }
+        
+                // Function to update header with month and year
+                function updateHeader(month, year) {
+                    const now = new Date(year, month);
+                    const options = { year: 'numeric', month: 'long' };
+                    const formattedMonthYear = now.toLocaleDateString('en-US', options);
+                    document.getElementById('clock').textContent = formattedMonthYear;
+                }
+        
+                // Initialize current month and year
+                let now = new Date();
+                let currentMonth = now.getMonth();
+                let currentYear = now.getFullYear();
+        
+                // Set up event listeners for navigation buttons
+                document.getElementById('prevMonth').addEventListener('click', () => navigateMonth(-1));
+                document.getElementById('nextMonth').addEventListener('click', () => navigateMonth(1));
+        
+                // Initial calls
+                setInterval(updateClock, 1000);
+                updateClock();
+                generateCalendar(currentMonth, currentYear);
+                updateHeader(currentMonth, currentYear);
+            </script>
+        </body>
+        
+        <div class="operation-hours">
+            <h2>Opening Hours</h2>
+            <p>We welcome you to Culture Corner Mibrary. Here are our opening hours:</p>
+            <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+            <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+            <p><strong>Sunday and Public Holidays:</strong> Closed</p>
+            <p>Please note that the opening hours may change during public holidays or special events. For the latest information, please refer to our website or contact us at culturecornermibrary24@gmail.com.</p>
+        </div>
+
+    </section>
+
+    <section id="about">
+        <h1>About Us</h1>
+       <b> <h3>MISSION</h3>
+        <p>To provide easy access to knowledge, inspire learning, and support our community's informational needs online. We strive to create an inclusive environment where everyone feels welcome and supported in their educational and personal growth.</p>
+
+        <h3>VISION</h3>
+        <p>To be the digital gateway that enriches knowledge, fosters discovery, and connects communities through accessible and innovative library services.</p></b>
+
+        <style>
+                    /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+          header {
+            text-align: center;
+            padding: 20px;
+        }
+  
+          main {
+              padding: 20px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-around;
+          }
+  
+          /* Team Member Card Styles */
+          .team-member {
+              width: 280px; /* Adjusted width */
+              background-color: #b9b9b9;
+              margin: 60px;
+              padding: 15px; /* Adjusted padding */
+              border-radius: 30px;
+              box-shadow: 0 0 10px rgba(0,0,0,0.1);
+              transition: transform 0.3s ease;
+              text-align: center;
+          }
+  
+          .team-member:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+          }
+  
+          .team-member img {
+              width: 50%;
+              height: auto;
+              border-radius: 60%;
+              margin-bottom: 20px;
+          }
+  
+          .team-member h2 {
+              color: #0056b3;
+              font-size: 1.8rem;
+              margin-top: 0;
+          }
+  
+          .team-member h3 {
+              color: #666;
+              font-size: 1.2rem;
+              margin: 5px 0;
+          }
+  
+          .team-member p {
+              font-size: 1rem;
+              margin-top: 10px;
+          }
+  
+          .contact-info {
+              margin-top: 10px;
+          }
+  
+          .contact-info a {
+              display: block;
+              color: #0056b3;
+              text-decoration: none;
+              margin-top: 5px;
+          }
+  
+          .contact-info a:hover {
+              text-decoration: underline;
+          }
+
+      </style>
+  </head>
+  <body>
+ 
+              <u><h1>MEET OUR TEAM</h1></u>
+              <b><p>Get to know the people behind Culture Corner Mibrary.</p></b>
+      <main>
+          <!-- Team Member 1 -->
+          <div class="team-member">
+              <img src="IMAGES/azree.jpg" alt="Team Member 1">
+              <h2>Azree Kong</h2>
+              <h3>Chief Executive Officer (CEO)</h3>
+              <p>Responsible for the overall management of the company.</p>
+              <div class="contact-info">
+                  <a href="mailto:johndoe@example.com">azreekong@gmail.com</a>
+              </div>
+          </div>
+  
+          <!-- Team Member 2 -->
+          <div class="team-member">
+              <img src="IMAGES/hakimah.jpg" alt="Team Member 2">
+              <h2>Nor Hakimah</h2>
+              <h3>Chief Operating Officer (COO)</h3>
+              <p>Responsible for daily operations and human resources management.</p>
+              <div class="contact-info">
+                  <a href="mailto:janesmith@example.com">faitulersalina@gmail.com</a>
+              </div>
+          </div>
+  
+          <!-- Team Member 3 -->
+          <div class="team-member">
+              <img src="IMAGES/syafiqa.jpg" alt="Team Member 3">
+              <h2>Nursyafiqa Izzati</h2>
+              <h3>Chief Financial Officer (CFO)</h3>
+              <p>Responsible for financial reporting and compliance with laws.</p>
+              <div class="contact-info">
+                  <a href="mailto:emilyjohnson@example.com">nursyafiqaizzatisalim@gmail.com</a>
+              </div>
+          </div>
+  
+          <!-- Team Member 4 -->
+          <div class="team-member">
+              <img src="IMAGES/me.jpg" alt="Team Member 4">
+              <h2>Siti Suliana</h2>
+              <h3>Chief Marketing Officer (CMO)</h3>
+              <p>Promotes the company's brand and products or services to the target market.</p>
+              <div class="contact-info">
+                  <a href="mailto:michaelbrown@example.com">ctsulianaomar@gmail.com</a>
+              </div>
+          </div>
+      </main>
+        
+    </section>
+
+
+
+    <section id="services">
+        <h1>Our Services</h1>
+
+        <style>
+            /* General Styles */
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff00;
+                color: #333;
+            }
+            
+            main {
+                padding: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+    
+            /* Service Card Styles */
+            .service {
+                width: 280px;
+                height: 320px; /* Adjust height to fit the image */
+                background-color: #ffffff00;
+                margin: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            }
+    
+            .service:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+    
+            .service img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensure the image covers the entire card */
+                z-index: -1; /* Place the image behind the text */
+            }
+    
+            .service-content {
+                position: relative;
+                z-index: 1; /* Ensure the text appears on top of the image */
+                padding: 20px; /* Add padding to the text */
+                background: rgba(187, 185, 185, 0.8); /* Slightly transparent background for readability */
+                border-radius: 8px; /* Match the border radius of the card */
+            }
+    
+            .service h2 {
+                color: #0056b3;
+                font-size: 1.8rem;
+                margin-top: 0;
+            }
+    
+            .service p {
+                font-size: 1rem;
+                margin-top: 10px;
+            }
+    
+        </style>
+    </head>
+    
+    <body>
+        <main>
+            <!-- Borrowing Service -->
+            <div class="service">
+                <img src="IMAGES/borrowings.jpg" alt="Borrowing">
+                <div class="service-content">
+                    <h2>Borrowing</h2>
+                    <p>Borrow books, DVDs, and other materials from our diverse collection.</p>
+                </div>
+            </div>
+    
+            <!-- E-Resources Service -->
+            <div class="service">
+                <img src="IMAGES/e-resources.jpg" alt="E-Resources">
+                <div class="service-content">
+                    <h2>E-Resources</h2>
+                    <p>Access a wide range of digital resources including e-books and online journals.</p>
+                </div>
+            </div>
+    
+            <!-- Interlibrary Loan Service -->
+            <div class="service">
+                <img src="IMAGES/interlibrary loan.jpg" alt="Interlibrary Loan">
+                <div class="service-content">
+                    <h2>Interlibrary Loan</h2>
+                    <p>Request materials from other libraries for your research and learning needs.</p>
+                </div>
+            </div>
+    
+            <!-- Study Rooms Service -->
+            <div class="service">
+                <img src="IMAGES/study rooms.jpg" alt="Study Rooms">
+                <div class="service-content">
+                    <h2>Study Rooms</h2>
+                    <p>Reserve private study rooms equipped with modern amenities and resources.</p>
+                </div>
+            </div>
+    
+            <!-- Printing Service -->
+            <div class="service">
+                <img src="IMAGES/print.jpg" alt="Printing">
+                <div class="service-content">
+                    <h2>Printing</h2>
+                    <p>Print documents and assignments conveniently within the library premises.</p>
+                </div>
+            </div>
+    
+            <!-- Photocopying Service -->
+            <div class="service">
+                <img src="IMAGES/printerphotocopying.jpg" alt="Photocopying">
+                <div class="service-content">
+                    <h2>Photocopying</h2>
+                    <p>Make copies of documents and research materials for your personal use.</p>
+                </div>
+            </div>
+        </main>
+
+    </section>
+
+    <section id="programs">
+        <h1>Programs & Events</h1>
+
+        <!-- Content for Programs and Events -->
+<div class="content">
+  <div class="card">
+    <img src="IMAGES/culturalworkshop.jpg" alt="Cultural Workshops">
+      <h3>Cultural Workshops</h3>
+      <h2><p>Experience hands-on workshops on traditional crafts, cooking, music, dance, and language.</p></h2>
+  </div>
+  <div class="card">
+    <img src="IMAGES/authortalks.jpg" alt="Author Talks">
+      <h3>Author Talks</h3>
+      <h2><p>Engage in discussions with authors about their works and cultural themes.</p></h2>
+  </div>
+
+  <div class="card">
+    <img src="IMAGES/storytimeforchildren.jpg" alt="Storytime for Children">
+    <h3>Storytime for Children</h3>
+    <h2><p>Family storytime: Suitable for all ages, often includes crafts or games.</p></h2>
+</div>
+
+<div class="card"><img src="IMAGES/creativewritingworkshop.jpg" alt="Creative Writing Workshop">
+    <h3>Creative Writing Workshop</h3>
+    <h2><p>Encouraging young writers to develop their skills.</p></h2>
+</div>
+  <!-- Add more programs as needed -->
+</div>
+
+    </section>
+
+    <section id="research">
+        <h1>Research & Learning</h1>
+        <!-- Content for Research and Learning Topics -->
+<div class="content">
+  <div class="card">
+    <img src="IMAGES/intelligence search and discovery.jpg" alt="Intelligence Search And Discovery">
+      <h3>Intelligence Search And Discovery</h3>
+      <p>Allow users to search accross full catalog of physical and digital resources using natural queries.</p></h2>
+  </div>
+  <div class="card">
+    <img src="IMAGES/reference services.jpeg" alt="Reference Services">
+      <h3>Reference Services</h3>
+      <p>Librarians provide assistance in finding aid using resources, guiding patrons through the research process and answering specefic queries.</p></h2>
+  </div>
+  <!-- Add more research topics as needed -->
+</div>
+
+    </section>
+
+    <section id="community">
+        <h1>Community Engagement</h1>
+        <!-- Content for Community Engagement Initiatives -->
+<div class="content">
+  <div class="card">
+    <img src="IMAGES/vollunteersprogram.jpg" alt="Volunteers Programs">
+      <h3>Volunteers Programs</h3>
+      <h2><p>Engaging communtiy members as volunteers to assist with library operations, programs and events.</p></h2>
+  </div>
+  <div class="card">
+    <img src="IMAGES/lifelonglearning.jpg" alt="Life-Long Learning">
+      <h3>Life-Long Learning</h3>
+      <h2><p>To adapt to changing circumtances and required new skills to stay relevant and competitive.</p></h2>
+  </div>
+  <!-- Add more community engagement initiatives as needed -->
+</div>
+
+    </section>
+
+    <section id="contact">
+ 
+        <style>
+            body {
+              font-family:'Times New Roman', Times, serif;
+            }
+            
+            * {
+              box-sizing: border-box;
+            }
+            
+            /* Style inputs */
+            input[type=text], select, textarea {
+              width: 100%;
+              padding: 12px;
+              border: 1px solid #1a1818;
+              margin-top: 6px;
+              margin-bottom: 16px;
+              resize: vertical;
+            }
+            
+            input[type=submit] {
+              background-color: #04AA6D;
+              color: rgb(0, 0, 0);
+              padding: 12px 20px;
+              border: none;
+              cursor: pointer;
+            }
+            
+            input[type=submit]:hover {
+              background-color: #45a049;
+            }
+            
+            /* Style the container/contact section */
+            .container {
+              border-radius: 5px;
+              background-color: #504f4f;
+              padding: 10px;
+            }
+            
+            /* Create two columns that float next to eachother */
+            .column {
+              float: left;
+              width: 50%;
+              margin-top: 6px;
+              padding: 20px;
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            
+            /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+              .column, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+              }
+            }
+            </style>
+            </head>
+            <body>
+            
+            <div class="container">
+              <div style="text-align:center">
+                <h2>Contact Us</h2>
+               <p>If you have any questions, suggestions, or need assistance, please don't hesitate to contact us. We are always ready to help you.</p>
+            
+              </div>
+              <div class="row">
+                <div class="column">
+                  <img src="IMAGES/homepage.jpg" style="width:100%">
+                </div>
+                <div class="column">
+                  <form action="/action_page.php">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
+              </div>
+            </div>
+            </body>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <style>
+                .social-icons {
+                    display: flex;
+                    gap: 30px;
+                }
+                .social-icons .social-icon {
+                    text-align: center;
+                    color: #000;
+                    font-size: 24px;
+                }
+                .social-icons .social-icon a {
+                    text-decoration: none;
+                    color: inherit;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+                }
+                .social-icons .social-icon a:hover {
+                    color: #007bff;
+                }
+                .social-icons .social-icon span {
+                    display: block;
+                    font-size: 16px;
+                }
+                .social-icons .social-icon .account-name {
+                    font-size: 14px;
+                    color: #f8f8f8;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="social-icons">
+                <div class="social-icon">
+                    <a href="https://www.instagram.com/culturecornermibrary_?igsh=MTFsN2RzbXp5MTRrMA==" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                        <span class="account-name">culturecornermibrary_</span>
+                    </a>
+                </div>
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/profile.php?id=61562513677009&mibextid=ZbWKwL" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                        <span class="account-name">Cultur Corner Mibrary</span>
+                    </a>
+                </div>
+                <div class="social-icon">
+                    <a href="culturecornermibrary24@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                        <span class="account-name">culturecornermibrary24@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </body>
+    </section>
+
+</body>
+</html>
